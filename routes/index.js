@@ -1,7 +1,7 @@
 'use strict';
 var express = require('express');
 var router = express.Router();
-const client = require('../db');
+const client = require('../db').client;
 // var tweetBank = require('../tweetBank');
 
 module.exports = function makeRouterWithSockets (io) {

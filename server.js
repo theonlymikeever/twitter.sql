@@ -9,6 +9,7 @@ var path = require('path');
 var mime = require('mime');
 var bodyParser = require('body-parser');
 var socketio = require('socket.io');
+var db = require('./db');
 
 // templating boilerplate setup
 app.engine('html', nunjucks.render); // how to render html templates
@@ -26,6 +27,12 @@ app.use(bodyParser.json()); // would be for AJAX requests
 // start the server
 var server = app.listen(1337, function(){
   console.log('listening on port 1337');
+  db.syncAndSeed(function(err){
+    if (err){
+      return console.log(err.message);
+    }
+    console.log('seed successful');
+  });
 });
 var io = socketio.listen(server);
 
