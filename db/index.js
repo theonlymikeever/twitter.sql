@@ -1,6 +1,6 @@
 const pg = require('pg');
 
-const client = new pg.Client('postgres://localhost/twitterdb');
+const client = new pg.Client(process.env.DATABASE_URL);
 
 client.connect(function(err){
   if (err){
